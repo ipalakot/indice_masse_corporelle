@@ -30,6 +30,8 @@ public class Profil {
         this.taille = taille;
         this.age = age;
         this.sexe = sexe;
+        this.calculImg();
+        this.resulImg();
     }
 
     public Integer getPoids() {
@@ -46,6 +48,14 @@ public class Profil {
 
     public Integer getSexe() {
         return sexe;
+    }
+    public String getMessage() {
+        return message;
+    }
+
+    public Float getImg() {
+
+        return img;
     }
 
     /**
