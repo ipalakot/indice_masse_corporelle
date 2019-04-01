@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.indicedemassegraisseuse.R;
@@ -18,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        init();
     }
 
     /**
@@ -27,20 +29,25 @@ public class MainActivity extends AppCompatActivity {
     private EditText txtTaille;
     private EditText txtAge;
     private RadioButton rdHomme;
-    private EditText lblIMG;
+    private TextView lblIMG;
     private ImageView imgSmiley;
     private Controler controler;
 
 
+    // Propriétes
     private void init(){
         txtPoids = (EditText) findViewById(R.id.txtPoids);
         txtTaille = (EditText) findViewById(R.id.txtTaille);
         txtAge = (EditText) findViewById(R.id.txtAge);
         rdHomme = (RadioButton) findViewById(R.id.rdHomme);
-        lblIMG = (EditText) findViewById(R.id.lblIMG);
+        lblIMG = (TextView) findViewById(R.id.lblIMG);
         imgSmiley = (ImageView) findViewById(R.id.imgSmiley);
+        ecouteCalcul();
     }
 
+    /**
+     * Method Ecoute CAlcul
+     */
     private void ecouteCalcul(){
         ((Button) findViewById(R.id.btnCalc)).setOnClickListener(new Button.OnClickListener() {
             public void onClick(View V){
