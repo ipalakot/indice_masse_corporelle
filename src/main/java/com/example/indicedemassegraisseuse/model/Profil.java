@@ -86,10 +86,10 @@ public class Profil {
     // Gestion  des Messages
         message = "normal";
         if (img < min){
-            message ="Vous êtes tropmaiges !";
+            message ="trop maigre";
         } else {
             if (img > max) {
-                message = "Vous êtes bien Gros!";
+                message = "bien Gros!";
             }
             }
     }
