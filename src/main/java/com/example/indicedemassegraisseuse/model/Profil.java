@@ -15,7 +15,7 @@ public class Profil {
     private Integer age;
     private Integer sexe;
     private String message;
-    private Float img;
+    private float img;
 
     /**
      * Constructeur
@@ -30,8 +30,8 @@ public class Profil {
         this.taille = taille;
         this.age = age;
         this.sexe = sexe;
-        this.calculImg();
-        this.resulImg();
+        this.calculIMG();
+        this.resulIMG();
     }
 
     public Integer getPoids() {
@@ -54,31 +54,30 @@ public class Profil {
     }
 
     public Float getImg() {
-
         return img;
     }
 
     /**
      *
      */
-    private void calculImg(){
+    private void calculIMG(){
 
         float tailleM = ((float)taille) / 100;
-        this.img = (float)((1.2*poids / (tailleM*tailleM))*(0.23*age)-(10.83*sexe) - 5.4);
+        this.img = (float)((1.2*poids / (tailleM*tailleM))+ (0.23*age)-(10.83*sexe) - 5.4);
     }
 
     /**
      *
      */
-    public void resulImg(){
+    private void resulIMG(){
         Integer min;
         Integer max;
 
         if (sexe == 0) {//Le cas d'une Femme
             min = minFemme;
-        max = maxFemme;
+            max = maxFemme;
 
-        } else  { // / Le cas d'un homme
+        } else  { // Le cas d'un homme
             min = minHomme;
             max= maxHomme;
             }
@@ -91,6 +90,6 @@ public class Profil {
             if (img > max) {
                 message = "bien Gros!";
             }
-            }
+        }
     }
 }

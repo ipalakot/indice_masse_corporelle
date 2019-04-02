@@ -1,9 +1,7 @@
 package com.example.indicedemassegraisseuse.vue;
 
-import android.nfc.Tag;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,7 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.indicedemassegraisseuse.R;
-import com.example.indicedemassegraisseuse.controler.Controler;
+import com.example.indicedemassegraisseuse.controleur.Controle;
 
 public class MainActivity<message> extends AppCompatActivity {
 
@@ -22,6 +20,7 @@ public class MainActivity<message> extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         init();
+        this.controle = Controle.getInstance();
     }
 
     /**
@@ -33,7 +32,9 @@ public class MainActivity<message> extends AppCompatActivity {
     private RadioButton rdHomme;
     private TextView lblIMG;
     private ImageView imgSmiley;
-    private Controler controler;
+    private Button btnCalc;
+    private Controle controle;
+
 
 
     // Propriétes
@@ -42,6 +43,7 @@ public class MainActivity<message> extends AppCompatActivity {
         txtTaille = (EditText) findViewById(R.id.txtTaille);
         txtAge = (EditText) findViewById(R.id.txtAge);
         rdHomme = (RadioButton) findViewById(R.id.rdHomme);
+        btnCalc = (Button) findViewById(R.id.btnCalc);
         lblIMG = (TextView) findViewById(R.id.lblIMG);
         imgSmiley = (ImageView) findViewById(R.id.imgSmiley);
         ecouteCalcul();
@@ -52,7 +54,7 @@ public class MainActivity<message> extends AppCompatActivity {
      */
     private void ecouteCalcul() {
         ((Button) findViewById(R.id.btnCalc)).setOnClickListener(new Button.OnClickListener() {
-            public void onClick(View V) {
+            public void onClick(View v) {
 
                 //Toast.makeText(MainActivity.this, "Test", Toast.LENGTH_SHORT).show();
                 // Log.d("message", "LICK OK SUR LECOUTE" ); // Affichage dans le Logcat;
@@ -67,9 +69,7 @@ public class MainActivity<message> extends AppCompatActivity {
                     poids = Integer.parseInt(txtPoids.getText().toString());
                     taille = Integer.parseInt(txtTaille.getText().toString());
                     age = Integer.parseInt(txtAge.getText().toString());
-                } catch (Exception e) {
-                }
-                ;
+                } catch (Exception e) {}
 
                 if (rdHomme.isChecked()) {
                     sexe = 1;
@@ -98,21 +98,21 @@ public class MainActivity<message> extends AppCompatActivity {
      */
     public void afficheResult(Integer poids, Integer taille, Integer age, Integer sexe){
 
-        this.controler.creerProfil(poids, taille, age, sexe);
-        Float img = this.controler.getImg();
-        String message = this.controler.getMessage();
+        this.controle.creerProfil(poids, taille, age, sexe);
+        float img = this.controle.getImg();
+        String message = this.controle.getMessage();
 
         // Affichage;
         if (message == "normal") {
-            imgSmiley.setImageResource(R.drawable.mince);
+            imgSmiley.setImageResource(R.drawable.minnce2);
             lblIMG.setTextColor(android.R.color.holo_green_light);
         } else {
 
             lblIMG.setTextColor(android.R.color.holo_red_light);
             if (message == "trop maigre") {
-                imgSmiley.setImageResource(R.drawable.maigre);
+                imgSmiley.setImageResource(R.drawable.maigre2);
             } else {
-                imgSmiley.setImageResource(R.drawable.gros);
+                imgSmiley.setImageResource(R.drawable.gros2);
             }
         }
         lblIMG.setText(String.format(img + " IMG " + message));

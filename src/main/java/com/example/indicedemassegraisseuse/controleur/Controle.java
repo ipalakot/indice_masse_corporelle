@@ -1,15 +1,16 @@
-package com.example.indicedemassegraisseuse.controler;
+package com.example.indicedemassegraisseuse.controleur;
 
 import com.example.indicedemassegraisseuse.model.Profil;
 
-public class Controler {
-    private static Controler instance = null;
+public final class Controle {
+
+    private static Controle instance = null;
     private Profil profil;
 
     /**
      * Constructeur Privé
      */
-    private Controler() {
+    private Controle() {
         super();
     }
 
@@ -17,11 +18,11 @@ public class Controler {
      * Creation de l'istance
      * @return Instance
      */
-    public  static final Controler getInstance(){
-            if (Controler.instance== null){
-                Controler.instance = new Controler();
+    public  static final Controle getInstance(){
+            if (Controle.instance == null){
+                Controle.instance = new Controle();
             }
-            return Controler.instance;
+            return Controle.instance;
     }
 
     /**
@@ -31,6 +32,7 @@ public class Controler {
      * @param age
      * @param sexe
      */
+
     public void creerProfil(Integer poids, Integer taille, Integer age,Integer sexe){
         profil = new Profil(poids,taille,age,sexe);
      }
